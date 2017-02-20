@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+
+jar {
+    baseName = 'db-data-to-xml'
+//    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava {
+    options.compilerArgs << '-XDignore.symbol.file'
+    options.fork = true
+    options.forkOptions.executable = 'javac'
+}
+
+
+dependencies {
+
+
+    compile files("$rootDir/lib/ojdbc14-10.2.0.5.jar")
+
+    compile("org.springframework.boot:spring-boot-starter")
+//    compile("org.springframework:spring-jdbc")
+    compile ('org.springframework.boot:spring-boot-starter-jdbc:1.5.1.RELEASE')
+
+
+    testCompile("junit:junit")
+}
